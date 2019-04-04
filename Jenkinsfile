@@ -25,7 +25,7 @@ node
    }
    stage ('Clone') 
    {
-        git url: 'git@git.nagarro.com:devopscoe/training/gyayakjain.git'
+        git url: 'https://github.com/gyayakjain/Java.git'
     }
  
     stage ('Artifactory configuration') 
