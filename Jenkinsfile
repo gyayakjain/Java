@@ -4,7 +4,7 @@ node
    stage('Preparation') 
    { 
       git 'https://github.com/gyayakjain/Java.git'          
-      mvnHome = tool 'mavenhome'
+      MAVEN_HOME = tool 'MAVEN_HOME'
       jdk    = tool name: 'JAVA8'
       env.JAVA_HOME = "${jdk}"
    }
@@ -12,23 +12,23 @@ node
    {
       if (isUnix()) 
       {
-         sh "'${mvnHome}/bin/mvn' -Dmaven.test.failure.ignore clean package"
+         sh "'${MAVEN_HOME}/bin/mvn' -Dmaven.test.failure.ignore clean package"
       } else 
       {
-         bat(/"${mvnHome}\bin\mvn" -Dmaven.test.failure.ignore clean package/)
+         bat(/"${MAVEN_HOME}\bin\mvn" -Dmaven.test.failure.ignore clean package/)
       }
    }
-   stage('Results') 
-   {
-      junit '**/target/surefire-reports/TEST-*.xml'
-      archive 'target/*.jar'
-   }
+   //stage('Results') 
+   //{
+    //  junit '**/target/surefire-reports/TEST-*.xml'
+     // archive 'target/*.jar'
+   //}
    stage ('Clone') 
    {
         git url: 'https://github.com/gyayakjain/Java.git'
     }
  
-    stage ('Artifactory configuration') 
+   /* stage ('Artifactory configuration') 
    {
         mvnHome = tool 'mavenhome'
         rtMaven.tool = 'mavenhome' // Tool name from Jenkins configuration
@@ -41,6 +41,6 @@ node
     stage ('Exec Maven') 
    {
         rtMaven.run pom: 'pom.xml', goals: 'clean install', buildInfo: buildInfo
-    }
+    }*/
 
 }
