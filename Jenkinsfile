@@ -1,6 +1,6 @@
 node 
 {
-   def mvnHome
+   def MAVEN_HOME
    stage('Preparation') 
    { 
       git 'https://github.com/gyayakjain/Java.git'          
